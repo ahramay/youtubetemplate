@@ -1,0 +1,14 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
+
+@import './partials/variables';
+@import './partials/mixins';
+
+@import './modules/app';
+@import './modules/nav';
+@import './modules/videoList';
+@import './modules/videoPlayer';
+
+body{
+	background: #f1f1f1;
+}

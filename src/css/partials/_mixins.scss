@@ -1,0 +1,28 @@
+@mixin button($bg, $activebg){
+	padding: 6px 20px;
+	border:1px solid $bg;
+	width:8%;
+	text-align: center;
+	font-family: Times New Roman;
+	font-size: 1.1em;
+	border-radius: 4px;
+	transition: background .4s ease-in-out;
+	&:hover{
+		background: darken($bg, 30%);
+		color: #FFF;
+		cursor: pointer;
+	}
+	&:active{
+		background: $activebg;
+		color: #FFF;
+		border: 1px solid $activebg;
+		cursor: pointer; 
+	}
+}
+
+@mixin image($loc){
+	background-image: url('../images/' + $loc);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}

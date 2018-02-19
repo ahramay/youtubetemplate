@@ -1,0 +1,11 @@
+.videoPlayer{
+	.player{
+		background: #fff;
+		box-shadow: 0 0 8px;
+		margin-top: 20px;
+	}
+	.video-details{
+		@extend .player;
+		padding: 20px;
+	}
+}
