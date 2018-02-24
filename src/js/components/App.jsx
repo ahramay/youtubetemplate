@@ -13,7 +13,7 @@ export default class App extends React.Component {
   	this.state = {
   		videoList: [],
   		selectedVideo: '',
-      searchedVideo: 'asd',
+      searchedVideo: '',
   	}
 
     this.handleSelectedVideo = this.handleSelectedVideo.bind(this);
@@ -56,7 +56,6 @@ export default class App extends React.Component {
           getSearchVideos = {this.getSearchVideos}
           searchedVideo = {searchedVideo}
            />
-          }
         <div className="col-md-8">
         	<VideoPlayer selectedVideo= { selectedVideo } />
         </div>

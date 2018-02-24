@@ -16,7 +16,7 @@ export default class VideoListEntry extends React.Component {
           <div className="media-body">
             <h4 
               className="media-heading"
-              onClick={() => handleSelectedVideo('ReactJS')}
+              onClick={() => handleSelectedVideo(video)}
               >
               {video.snippet.title}
             </h4>

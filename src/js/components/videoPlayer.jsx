@@ -1,6 +1,9 @@
 import React from 'react';
 export default class VideoPlayer extends React.Component {
+
+
   render() {
+    console.log(this.props)
   	let { selectedVideo } = this.props;
   	if(selectedVideo){
   		var selectedVideoURL = 'https://www.youtube.com/embed/'+ 
