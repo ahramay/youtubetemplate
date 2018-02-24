@@ -12,10 +12,14 @@ export default class App extends React.Component {
   	super();
   	this.state = {
   		videoList: [],
-  		selectedVideo: ''
+  		selectedVideo: '',
+      searchedVideo: 'asd',
   	}
 
-  	this.handleSelectedVideo = this.handleSelectedVideo.bind(this);
+    this.handleSelectedVideo = this.handleSelectedVideo.bind(this);
+
+    this.getSearchVideos = this.getSearchVideos.bind(this);
+
 	}
 
 	getVideos(query){
@@ -32,16 +36,27 @@ export default class App extends React.Component {
 		})
 	}
 
+  getSearchVideos(query){
+    this.setState({
+      searchedVideo: query
+    })
+    this.getVideos(query);
+  }  
+
 	handleSelectedVideo(video){
-		this.setState({selectedVideo: video})
+    this.setState({selectedVideo: video})
 	}
 
   render() {
-
-  	let { selectedVideo, videoList } = this.state
+    let { selectedVideo, videoList, searchedVideo } = this.state
+    console.log(this.state)
     return (
       <div className="app">
-        <Nav />
+        <Nav 
+          getSearchVideos = {this.getSearchVideos}
+          searchedVideo = {searchedVideo}
+           />
+          }
         <div className="col-md-8">
         	<VideoPlayer selectedVideo= { selectedVideo } />
         </div>

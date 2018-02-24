@@ -3,7 +3,7 @@ export default class VideoListEntry extends React.Component {
   render() {
 
     let { video, handleSelectedVideo } = this.props;
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div className="videoListItem">
       	<div className="media">
@@ -16,7 +16,7 @@ export default class VideoListEntry extends React.Component {
           <div className="media-body">
             <h4 
               className="media-heading"
-              onClick={() => handleSelectedVideo(video)}
+              onClick={() => handleSelectedVideo('ReactJS')}
               >
               {video.snippet.title}
             </h4>
