@@ -17,31 +17,41 @@ export default class App extends React.Component {
   	}
 
     this.handleSelectedVideo = this.handleSelectedVideo.bind(this);
-
-    this.getSearchVideos = this.getSearchVideos.bind(this);
+    // this.getSearchVideos = this.getSearchVideos.bind(this);
+    this.cbGetVideos = this.cbGetVideos.bind(this);
+    this.cbUpdateVideos = this.cbUpdateVideos.bind(this);
 
 	}
 
-	getVideos(query){
+	getVideos(query, cb){
 
 		const fixed = 'https://www.googleapis.com/youtube/v3/search'
 		let url = fixed + '?part=snippet' + '&maxResults=5' 
 		+'&q=' + query + '&key=' + YOUTUBE_KEY;
 		
-		axios.get(url).then(data => {
-			this.setState({
-				videoList: data.data.items,
-				selectedVideo: data.data.items[0]
-			})
-		})
+		axios.get(url).then(cb)
 	}
 
-  getSearchVideos(query){
+  cbGetVideos(data){
     this.setState({
-      searchedVideo: query
+      videoList: data.data.items,
+      selectedVideo: data.data.items[0]
     })
-    this.getVideos(query);
-  }  
+  }
+
+  cbUpdateVideos(data){
+    this.setState({
+      videoList: data.data.items,
+    })
+  }
+
+
+  // getSearchVideos(query){
+  //   this.setState({
+  //     searchedVideo: query
+  //   })
+  //   this.getVideos(query);
+  // }  
 
 	handleSelectedVideo(video){
     this.setState({selectedVideo: video})
@@ -53,9 +63,9 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <Nav 
-          getSearchVideos = {this.getSearchVideos}
-          searchedVideo = {searchedVideo}
-           />
+          getVideos = {this.getVideos}
+          cbUpdateVideos = {this.cbUpdateVideos}
+        />
         <div className="col-md-8">
         	<VideoPlayer selectedVideo= { selectedVideo } />
         </div>
@@ -71,7 +81,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-  	this.getVideos('javascript');
+  	this.getVideos('javascript', this.cbGetVideos);
   }
 
 };

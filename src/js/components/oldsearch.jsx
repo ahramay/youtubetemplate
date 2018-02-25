@@ -1,37 +1,40 @@
 import React from 'react';
-
-import _ from 'lodash'
-
 export default class Search extends React.Component {
 
   constructor(){
     super();
     this.state = {
-
+      value: '',
     }
-    this.localHandler = this.localHandler.bind(this);
-    this.localHandler = _.debounce(this.localHandler, 500)
-
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  localHandler(e) {
-    const { getVideos, cbUpdateVideos } = this.props
-    getVideos(this.input.value, cbUpdateVideos)
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSearch(){
+  	this.props.getSearchVideos(this.state.value)
+  	this.setState({
+  		value: ''
+  	})
   }
 
   render() {
-  	// console.log(this.props)
+  // 	console.log(this.props)
 		// let {getSearchVideos, searchedVideo} = this.props
     return (
       <div className="search col-md-6 col-md-offset-3 form-inline">
       	<input 
       		type="text" 
-          ref={(elem)=>this.input=elem}
-      		onChange={this.localHandler} 
+      		value={this.state.value} 
+      		onChange={this.handleChange} 
       		className="form-control" 
       	/>
       	<span
       	 	className="btn glyphicon glyphicon-search" 
+      		onClick={this.handleSearch}
       	>
       	</span>
       </div>
